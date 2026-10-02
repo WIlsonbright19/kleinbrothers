@@ -1,0 +1,543 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #146EF5;
+    --color-primary-hover: #0F5CD1;
+    --color-text: #080808;
+    --color-bg: #FFFFFF;
+    --color-border: #E0E0E0;
+    --color-muted-bg: #F5F5F5;
+    --ease-webflow: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html {
+    font-family: "WF Visual Sans Variable", "Plus Jakarta Sans", Arial, sans-serif;
+    color: #080808;
+    background-color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    color: #080808;
+    overflow-x: hidden;
+  }
+}
+
+/* Page Load Keyframes */
+@keyframes navLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroHeadlineLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSupportLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroCtaLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroMaskReveal {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  100% {
+    clip-path: inset(0 0 0% 0);
+  }
+}
+
+@keyframes heroImageScale {
+  0% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-nav-load {
+  animation: navLoad 500ms var(--ease-webflow) 0ms backwards;
+}
+
+.animate-hero-headline {
+  animation: heroHeadlineLoad 650ms var(--ease-webflow) 100ms backwards;
+}
+
+.animate-hero-support {
+  animation: heroSupportLoad 500ms var(--ease-webflow) 180ms backwards;
+}
+
+.animate-hero-cta {
+  animation: heroCtaLoad 450ms var(--ease-webflow) 260ms backwards;
+}
+
+.animate-hero-mask {
+  animation: heroMaskReveal 900ms var(--ease-webflow) 150ms backwards;
+}
+
+.animate-hero-scale {
+  animation: heroImageScale 900ms var(--ease-webflow) 150ms backwards;
+}
+
+/* Primary & Secondary CTA Hover System — Webflow Editorial Curtain + Kinetic Text Roll */
+.btn-primary-wf {
+  position: relative;
+  overflow: hidden;
+  background-color: #146EF5;
+  color: #FFFFFF;
+  transform: scale(1);
+  transition:
+    transform 260ms var(--ease-webflow),
+    background-color 260ms var(--ease-webflow),
+    border-color 260ms var(--ease-webflow);
+  isolation: isolate;
+}
+
+.btn-primary-wf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #080808;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 380ms var(--ease-webflow);
+  z-index: -1;
+}
+
+.btn-secondary-wf {
+  position: relative;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  color: #080808;
+  border: 1px solid #E0E0E0;
+  transform: scale(1);
+  transition:
+    transform 260ms var(--ease-webflow),
+    color 320ms var(--ease-webflow),
+    border-color 320ms var(--ease-webflow);
+  isolation: isolate;
+}
+
+.btn-secondary-wf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #080808;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 380ms var(--ease-webflow);
+  z-index: -1;
+}
+
+/* Rolling Text & Icon Primitives inside Buttons */
+.btn-roll-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  line-height: 1.25;
+}
+
+.btn-roll-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translate3d(0, 0%, 0);
+  transition: transform 380ms var(--ease-webflow);
+}
+
+.btn-roll-clone {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transform: translate3d(0, 115%, 0);
+  transition: transform 380ms var(--ease-webflow);
+}
+
+/* Animated Link Underline + Arrow Glide */
+.link-editorial-wf {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.link-editorial-wf::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(1);
+  transform-origin: right center;
+  transition: transform 360ms var(--ease-webflow);
+}
+
+.link-editorial-wf .link-arrow-wf {
+  transition: transform 340ms var(--ease-webflow);
+}
+
+/* Stylish Animated Footer Base Styles */
+.footer-nav-link {
+  position: relative;
+  transition: color 300ms var(--ease-webflow), padding-left 340ms var(--ease-webflow);
+}
+
+.footer-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background-color: #146EF5;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 420ms var(--ease-webflow);
+}
+
+.footer-nav-link .footer-link-arrow {
+  transition: transform 340ms var(--ease-webflow), color 300ms var(--ease-webflow), opacity 300ms var(--ease-webflow);
+}
+
+.btn-footer-outline {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  transform: scale(1);
+  transition:
+    transform 260ms var(--ease-webflow),
+    color 320ms var(--ease-webflow),
+    border-color 320ms var(--ease-webflow);
+  isolation: isolate;
+}
+
+.btn-footer-outline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #FFFFFF;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 380ms var(--ease-webflow);
+  z-index: -1;
+}
+
+.btn-footer-primary {
+  position: relative;
+  overflow: hidden;
+  background-color: #146EF5;
+  color: #FFFFFF;
+  transform: scale(1);
+  transition:
+    transform 260ms var(--ease-webflow),
+    color 320ms var(--ease-webflow);
+  isolation: isolate;
+}
+
+.btn-footer-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #FFFFFF;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 380ms var(--ease-webflow);
+  z-index: -1;
+}
+
+/* Mobile & Tablet (< 1024px): Solid Backgrounds on All Buttons & Action Links */
+@media (max-width: 1023px) {
+  .btn-primary-wf {
+    background-color: #146EF5;
+    color: #FFFFFF;
+    border: 1px solid #146EF5;
+  }
+
+  .btn-primary-wf:active {
+    background-color: #080808;
+    border-color: #080808;
+    transform: scale(0.98);
+  }
+
+  .btn-secondary-wf {
+    background-color: #080808;
+    color: #FFFFFF;
+    border: 1px solid #080808;
+  }
+
+  .btn-secondary-wf:active {
+    background-color: #146EF5;
+    border-color: #146EF5;
+    transform: scale(0.98);
+  }
+
+  .btn-footer-outline {
+    background-color: rgba(255, 255, 255, 0.16);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  .btn-footer-outline:active {
+    background-color: #FFFFFF;
+    color: #080808;
+    transform: scale(0.98);
+  }
+
+  .link-editorial-wf {
+    background-color: #080808;
+    color: #FFFFFF !important;
+    padding: 0.85rem 1.25rem;
+    border-radius: 6px;
+    border: 1px solid #080808;
+    justify-content: center;
+  }
+
+  .link-editorial-wf::after {
+    display: none;
+  }
+
+  .link-editorial-wf.link-editorial-footer {
+    background-color: rgba(255, 255, 255, 0.16);
+    color: #FFFFFF !important;
+    padding: 0.65rem 1.1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary-wf:hover {
+    transform: scale(1.025);
+  }
+
+  .btn-primary-wf:hover::before {
+    transform: scaleY(1);
+    transform-origin: top center;
+  }
+
+  .btn-secondary-wf:hover {
+    color: #FFFFFF;
+    border-color: #080808;
+    transform: scale(1.025);
+  }
+
+  .btn-secondary-wf:hover::before {
+    transform: scaleY(1);
+    transform-origin: top center;
+  }
+
+  .btn-primary-wf:hover .btn-roll-primary,
+  .btn-secondary-wf:hover .btn-roll-primary {
+    transform: translate3d(0, -115%, 0);
+  }
+
+  .btn-primary-wf:hover .btn-roll-clone,
+  .btn-secondary-wf:hover .btn-roll-clone {
+    transform: translate3d(0, 0%, 0);
+  }
+
+  .btn-primary-wf:active,
+  .btn-secondary-wf:active {
+    transform: scale(0.99);
+  }
+
+  .link-editorial-wf:hover::after {
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  .link-editorial-wf:hover .link-arrow-wf {
+    transform: translate3d(3px, -3px, 0);
+  }
+
+  /* Stylish Animated Footer Row Hover */
+  .footer-nav-link:hover {
+    padding-left: 10px;
+    color: #FFFFFF;
+  }
+
+  .footer-nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .footer-nav-link:hover .footer-link-arrow {
+    transform: translate3d(4px, -4px, 0);
+    color: #146EF5;
+    opacity: 1;
+  }
+
+  .btn-footer-outline:hover {
+    color: #080808;
+    border-color: #FFFFFF;
+    transform: scale(1.025);
+  }
+
+  .btn-footer-outline:hover::before {
+    transform: scaleY(1);
+    transform-origin: top center;
+  }
+
+  .btn-footer-outline:hover .btn-roll-primary {
+    transform: translate3d(0, -115%, 0);
+  }
+
+  .btn-footer-outline:hover .btn-roll-clone {
+    transform: translate3d(0, 0%, 0);
+  }
+
+  .btn-footer-primary:hover {
+    color: #080808;
+    transform: scale(1.025);
+  }
+
+  .btn-footer-primary:hover::before {
+    transform: scaleY(1);
+    transform-origin: top center;
+  }
+
+  .btn-footer-primary:hover .btn-roll-primary {
+    transform: translate3d(0, -115%, 0);
+  }
+
+  .btn-footer-primary:hover .btn-roll-clone {
+    transform: translate3d(0, 0%, 0);
+  }
+
+  /* Service Block Hover (Desktop only) */
+  .service-card-wf {
+    transform: scale(1);
+    transition: transform 400ms var(--ease-webflow), border-color 400ms var(--ease-webflow);
+  }
+
+  .service-card-wf:hover {
+    transform: scale(1.02);
+    border-color: #080808;
+  }
+
+  .service-card-wf .service-img-wf {
+    transform: scale(1);
+    transition: transform 400ms var(--ease-webflow);
+  }
+
+  .service-card-wf:hover .service-img-wf {
+    transform: scale(1.035);
+  }
+
+  .service-card-wf .service-title-line {
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 400ms var(--ease-webflow);
+  }
+
+  .service-card-wf:hover .service-title-line {
+    transform: scaleX(1);
+  }
+}
+
+/* Reviews Kinetic Marquee Keyframes */
+@keyframes marqueeLeft {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 46s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 52s linear infinite;
+}
+
+.marquee-track:hover .animate-marquee-left,
+.marquee-track:hover .animate-marquee-right,
+.marquee-track:focus-within .animate-marquee-left,
+.marquee-track:focus-within .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-nav-load,
+  .animate-hero-headline,
+  .animate-hero-support,
+  .animate-hero-cta,
+  .animate-hero-mask,
+  .animate-hero-scale {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
+
